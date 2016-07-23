@@ -33,6 +33,8 @@ class PicoCategorizedPages extends AbstractPicoPlugin
        $headers['category_position'] = 'Category_Position';
        $headers['category_title'] = 'Category_Title';
        $headers['category_ignore'] = 'Category_Ignore';
+	   /* Added for multilingual */
+	   $headers['language'] = 'Language';
     }
 
     public function onPagesLoaded(
@@ -42,6 +44,7 @@ class PicoCategorizedPages extends AbstractPicoPlugin
     array &$nextPage = null
     ) {
         if($this->pages_order_by == 'position') {
+		  $current_language = $currentPage['meta']['language'] ? $currentPage['meta']['language'] : 'en';
             $temp_categories = array();
             $ignored_categories = array();
 
@@ -72,7 +75,9 @@ class PicoCategorizedPages extends AbstractPicoPlugin
                     && !in_array($current_category, $ignored_categories)
                     && array_key_exists($current_category, $temp_categories)
                     && $page['meta']['category_position'] == ''
-                    && !$page['meta']['page_ignore']) {
+                    && !$page['meta']['page_ignore']
+				    && ($page['meta']['language'] == $current_language )
+				   ) {
                         $temp_categories[$current_category]['pages'][$page['meta']['position']]['title'] = $page['title'];
                         $temp_categories[$current_category]['pages'][$page['meta']['position']]['url'] = $page['url'];
                     }
