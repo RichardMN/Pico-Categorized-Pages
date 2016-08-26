@@ -32,6 +32,7 @@ class PicoCategorizedPages extends AbstractPicoPlugin
        $headers['page_ignore'] = 'Page_Ignore';
        $headers['category_position'] = 'Category_Position';
        $headers['category_title'] = 'Category_Title';
+       $headers['category_titles'] = 'Category_Titles';
        $headers['category_ignore'] = 'Category_Ignore';
 	   /* Added for multilingual */
 	   $headers['language'] = 'Language';
@@ -59,8 +60,10 @@ class PicoCategorizedPages extends AbstractPicoPlugin
                     && !array_key_exists($current_category, $temp_categories)
                     && $page['meta']['category_position'] != '') {
                         $temp_categories[$current_category]['title'] = $page['meta']['category_title'];
+                          if ( is_array( $page['meta']['category_titles'] ) ) {
+                          $temp_categories[$current_category]['title'] = $page['meta']['category_titles'][$current_language];
+                        }
                         $temp_categories[$current_category]['position'] = $page['meta']['category_position'];
-
                         if(!$page['meta']['page_ignore']) {
                             $temp_categories[$current_category]['pages'][1]['title'] = $page['title'];
                             $temp_categories[$current_category]['pages'][1]['url'] = $page['url'];
@@ -76,8 +79,8 @@ class PicoCategorizedPages extends AbstractPicoPlugin
                     && array_key_exists($current_category, $temp_categories)
                     && $page['meta']['category_position'] == ''
                     && !$page['meta']['page_ignore']
-				    && ($page['meta']['language'] == $current_language )
-				   ) {
+                    && ($page['meta']['language'] == $current_language )
+                   ) {
                         $temp_categories[$current_category]['pages'][$page['meta']['position']]['title'] = $page['title'];
                         $temp_categories[$current_category]['pages'][$page['meta']['position']]['url'] = $page['url'];
                     }

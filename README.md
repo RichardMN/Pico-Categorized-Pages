@@ -6,6 +6,7 @@ A little [Pico-CMS](http://picocms.org/) plugin allowing you to automatically so
 - PICO 1.0.0 compatible
 - Category and pages sorting (asc or desc)
 - Category and pages ignore
+- Multilingual categories with language-specific titles
 
 ## General Purpose
 
@@ -117,6 +118,35 @@ Will output :
       </ul>
     </nav>
 ```
+
+## Multilingual support
+
+Used in conjunction with the
+[Pico Multilingual plugin](https://github.com/RichardMN/pico_multilanguage),
+this plugin can also provide specific category titles by language.
+
+The category tags in the index.md file include a new array of titles, one for
+each language, using the same language codes used for the Multilingual
+plugin.
+    ---
+    Title: Title of the page
+    Position: Position of the page
+    Page_Ignore: Set to true or false, will ignore this page in the generated array
+    Category_Title: Title of the category
+    Category_Titles:
+	  en: English Title of the Category
+	  fr: Titre en français
+    Category_Position: Position of the category
+    Category_Ignore: Set to true or false, will ignore this category in the generated array
+    ---
+
+Then based on the language of each page shown, the appropriate language
+title for the category will be provided. The twig code should not need changes (though
+you may need to rewrite your twig code to take advantage of other elements from
+the Multilingual plugin.
+
+Note that there is still no provision for index.md to have more than one language
+in its content.
 
 ## Installation
 Simply put PicoCategorizedPages.php in your plugins folder and it will be fine as it is.
