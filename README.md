@@ -142,7 +142,7 @@ plugin.
     ---
 
 Then based on the language of each page shown, the appropriate language
-title for the category will be provided. The twig code should not need changes (though
+title for the category will be provided. The twig code should not need changes, though
 you may need to rewrite your twig code to take advantage of other elements from
 the Multilingual plugin.
 
