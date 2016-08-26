@@ -128,6 +128,7 @@ this plugin can also provide specific category titles by language.
 The category tags in the index.md file include a new array of titles, one for
 each language, using the same language codes used for the Multilingual
 plugin.
+
     ---
     Title: Title of the page
     Position: Position of the page
