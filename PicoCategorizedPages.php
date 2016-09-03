@@ -18,6 +18,13 @@ class PicoCategorizedPages extends AbstractPicoPlugin
     protected $pages_order_by;
     protected $categories_order;
 
+    /**
+     * Triggered after Pico has read its configuration
+     *
+     * @see    Pico::getConfig()
+     * @param  array &$config array of config variables
+     * @return void
+     */
     public function onConfigLoaded(array &$config)
     {
         $this->base_url = $this->getConfig('base_url');
@@ -55,7 +62,7 @@ class PicoCategorizedPages extends AbstractPicoPlugin
                 if($page['meta']['category_ignore'] == true) {
                     array_push($ignored_categories, $current_category);
                 }
-                    
+
                 if($current_category != ''&& !in_array($current_category, $ignored_categories)
                     && !array_key_exists($current_category, $temp_categories)
                     && $page['meta']['category_position'] != '') {
