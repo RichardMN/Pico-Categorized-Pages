@@ -33,6 +33,15 @@ class PicoCategorizedPages extends AbstractPicoPlugin
         $this->categories_order = $this->getConfig('categories_order');
     }
 
+    /**
+     * Triggered when Pico reads its known meta header fields
+     *
+     * @see    Pico::getMetaHeaders()
+     * @param  string[] &$headers list of known meta header
+     *     fields; the array value specifies the YAML key to search for, the
+     *     array key is later used to access the found value
+     * @return void
+     */
     public function onMetaHeaders(array &$headers)
     {
        $headers['position'] = 'Position';
